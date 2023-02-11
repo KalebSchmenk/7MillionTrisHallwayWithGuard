@@ -66,7 +66,7 @@ public class EnemyAIController : MonoBehaviour
                 Chase();
 
                 // FIXME! Replace with behaviour where the AI will check the last known
-                // area
+                // location area of player
                 if(_canSeePlayer == false) _AIState = AIState.Roam;
                 break;
         }
@@ -81,7 +81,7 @@ public class EnemyAIController : MonoBehaviour
 
             _navMeshAgent.SetDestination(RandomNavMeshLocation());
             _IAmWaiting = true;
-            StartCoroutine(RandomWaitTimer());
+            StartCoroutine(WaitTimer());
         }
     }
 
@@ -92,7 +92,7 @@ public class EnemyAIController : MonoBehaviour
         // that the position is on the nav mesh
         while (true)
         {
-            Vector3 finalPosition = Vector3.zero;
+            Vector3 targetPosition = Vector3.zero;
             Vector3 randomPosition = Random.insideUnitSphere * _walkRadius;
             randomPosition += transform.position;
 
@@ -100,12 +100,12 @@ public class EnemyAIController : MonoBehaviour
             if (NavMesh.SamplePosition(randomPosition, out hit, _walkRadius, 1) && hit.position != _lastPosition)
             {
                 Debug.Log("Got a new target position");
-                finalPosition = hit.position;
+                targetPosition = hit.position;
 
-                _lastPosition = finalPosition;
+                _lastPosition = targetPosition;
                 
-                Debug.Log("Final Position: " + finalPosition);
-                return finalPosition;
+                Debug.Log("Target Position: " + targetPosition);
+                return targetPosition;
 
             }
         }
@@ -117,7 +117,7 @@ public class EnemyAIController : MonoBehaviour
         _navMeshAgent.speed = 7.5f;
     }
 
-    private IEnumerator RandomWaitTimer()
+    private IEnumerator WaitTimer()
     {
         yield return new WaitForSeconds(_waitTime);
 
