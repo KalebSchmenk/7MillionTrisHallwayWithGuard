@@ -9,6 +9,7 @@ public class EnemyAIController : MonoBehaviour
     private enum AIState
     { 
         Roam,
+        Search,
         Chase
     }
 
@@ -16,21 +17,27 @@ public class EnemyAIController : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
 
     [SerializeField]
-    [Range(0, 250)] private float _walkRadius;
+    [Range(0.0f, 250.0f)] private float _walkRadius;
 
     [SerializeField]
-    [Range(1f, 5f)] private float _waitTime;
+    [Range(1.0f, 15.0f)] private float _waitTime;
 
     [SerializeField]
-    [Range(0, 75)] private float _proximityRange;
+    [Range(0.0f, 75.0f)] private float _proximityRange;
 
     [SerializeField]
     private float _proxCheckWaitTime;
+
+    [SerializeField] private float _navMeshAgentSprintSpeed = 7.5f;
+    [SerializeField] private float _navMeshAgentJogSpeed = 5.0f;
+
+    private float _navMeshSpeed;
 
     private bool _canSeePlayer;
     private bool _IAmWaiting = false;
 
     private Vector3 _lastPosition;
+    private Vector3 _lastKnownLocation;
 
     private Renderer _enemyColor;
 
@@ -46,12 +53,15 @@ public class EnemyAIController : MonoBehaviour
 
         _player = GameObject.FindGameObjectWithTag("Player");
 
+        _navMeshSpeed = _navMeshAgent.speed;
+
         StartCoroutine(ProximityCheck());
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("I am waiting is: " + _IAmWaiting);
         switch (_AIState) 
         { 
             case AIState.Roam:
@@ -65,9 +75,24 @@ public class EnemyAIController : MonoBehaviour
                 _enemyColor.material.color = Color.red;
                 Chase();
 
-                // FIXME! Replace with behaviour where the AI will check the last known
-                // location area of player
-                if(_canSeePlayer == false) _AIState = AIState.Roam;
+                if (_canSeePlayer == false) 
+                { 
+                    _AIState = AIState.Search; 
+                    _lastKnownLocation = _player.transform.position; 
+                }
+                break;
+
+            // State changed handled in LookRight()
+            case AIState.Search:
+                _enemyColor.material.color = Color.magenta;
+                Search();
+
+                if (_canSeePlayer == true) _AIState = AIState.Chase;
+
+                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance && _canSeePlayer == false)
+                {
+                    _AIState = AIState.Roam;
+                }
                 break;
         }
     }
@@ -77,9 +102,7 @@ public class EnemyAIController : MonoBehaviour
     {
         if (_IAmWaiting == false && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
         {
-            _navMeshAgent.speed = 3.5f;
-
-            _navMeshAgent.SetDestination(RandomNavMeshLocation());
+            _navMeshAgent.speed = _navMeshSpeed;
             _IAmWaiting = true;
             StartCoroutine(WaitTimer());
         }
@@ -114,14 +137,26 @@ public class EnemyAIController : MonoBehaviour
     private void Chase()
     {
         _navMeshAgent.SetDestination(_player.transform.position);
-        _navMeshAgent.speed = 7.5f;
+        _navMeshAgent.speed = _navMeshAgentSprintSpeed;
     }
 
+    private void Search()
+    {
+        _navMeshAgent.SetDestination(_lastKnownLocation);
+        _navMeshAgent.speed = _navMeshAgentJogSpeed;
+    }
+
+    // FIXME!! Fix up logic
     private IEnumerator WaitTimer()
     {
+        _IAmWaiting = true;
+
         yield return new WaitForSeconds(_waitTime);
 
         if (_IAmWaiting == true) _IAmWaiting = false;
+
+        // State Roam is the only caller of this function. This is why setting a destination here is acceptable
+        _navMeshAgent.SetDestination(RandomNavMeshLocation());
     }
 
     private IEnumerator ProximityCheck()
