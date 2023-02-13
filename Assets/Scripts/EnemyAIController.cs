@@ -61,7 +61,6 @@ public class EnemyAIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("I am waiting is: " + _IAmWaiting);
         switch (_AIState) 
         { 
             case AIState.Roam:
