@@ -106,7 +106,7 @@ public class EnemyAIController : MonoBehaviour
 
                 if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance && _canSeePlayer == false)
                 {
-                    // Look around calcs
+                    // Look around calcs done here because it should only be done once
                     _rotationBeforeLookAround = transform.rotation.eulerAngles;
                     _rotateToRight = new Vector3(_rotationBeforeLookAround.x, _rotationBeforeLookAround.y + 65.0f, _rotationBeforeLookAround.z);
                     _rotateToLeft = new Vector3(_rotationBeforeLookAround.x, _rotationBeforeLookAround.y - 65.0f, _rotationBeforeLookAround.z);
