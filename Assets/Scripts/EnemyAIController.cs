@@ -121,7 +121,14 @@ public class EnemyAIController : MonoBehaviour
                 LookAround();
 
 
-                if (_canSeePlayer == true) _AIState = AIState.Chase;
+                if (_canSeePlayer == true)
+                {
+                    _AIState = AIState.Chase;
+                    _lookingLeft = false;
+                    _lookingRight = false;
+                    _lookingBackCenter = false;
+                    _doneLooking = false;
+                }
 
                 if (_doneLooking == true && _canSeePlayer == false)
                 {
@@ -232,8 +239,9 @@ public class EnemyAIController : MonoBehaviour
         _navMeshAgent.speed = 0;
         _navMeshAgent.SetDestination(transform.position);
         //FIXME!!! REPLACE WITH PLAYER SCRIPT NAME
-        var playerScript = _player.GetComponent<TestingPlayerController>();
-        if (playerScript != null) playerScript._playerCaptured = true;
+        var playerScript = _player.GetComponent<playerController>();
+        Debug.Log("I caught the player! Implement being caught in the player script and fix me");
+        //if (playerScript != null) playerScript._playerCaptured = true;
     }
 
     // FIXME!! Fix up logic
@@ -258,7 +266,17 @@ public class EnemyAIController : MonoBehaviour
         {
             if (hit.transform.gameObject.CompareTag("Player"))
             {
-                _canSeePlayer = true;
+                Vector3 toPlayer = (_player.transform.position - transform.position).normalized;
+
+                if (Vector3.Dot(transform.TransformDirection(Vector3.forward).normalized, toPlayer) > 0.55f)
+                {
+                    Debug.Log("Dot product check was true");
+                    _canSeePlayer = true;
+                }
+                else
+                {
+                    _canSeePlayer = false;
+                }
             }
             else
             {
