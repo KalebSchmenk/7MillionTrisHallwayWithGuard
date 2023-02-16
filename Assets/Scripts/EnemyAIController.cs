@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyAIController : MonoBehaviour
 {
-
     private enum AIState
     { 
         Roam,
@@ -27,19 +26,15 @@ public class EnemyAIController : MonoBehaviour
     [SerializeField]
     [Range(0.0f, 75.0f)] private float _proximityRange;
 
-    [SerializeField]
-    private float _proxCheckWaitTime;
-
+    [SerializeField] private float _proxCheckWaitTime;
     [SerializeField] private float _navMeshAgentSprintSpeed = 7.5f;
     [SerializeField] private float _navMeshAgentJogSpeed = 5.0f;
     [SerializeField] private float _lookAroundSpeed = 35.0f;
-
-
+    [SerializeField] private float _alwaysSeeRadius = 6.5f;
     private float _navMeshSpeed;
 
     private bool _canSeePlayer;
     private bool _IAmWaiting = false;
-
     private bool _lookingRight = false;
     private bool _lookingLeft = false;
     private bool _lookingBackCenter = false;
@@ -54,9 +49,9 @@ public class EnemyAIController : MonoBehaviour
     private Renderer _enemyColor;
 
     private GameObject _player;
+    private playerController _playerScript;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         _AIState = AIState.Roam;
@@ -64,24 +59,26 @@ public class EnemyAIController : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
         _player = GameObject.FindGameObjectWithTag("Player");
+        _playerScript = _player.GetComponent<playerController>();
 
         _navMeshSpeed = _navMeshAgent.speed;
 
         StartCoroutine(ProximityCheck());
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (_AIState) 
         { 
+            // Roam around the nav mesh randomly state
             case AIState.Roam:
                 _enemyColor.material.color = Color.yellow;
                 Wander();
 
                 if (_canSeePlayer == true) _AIState = AIState.Chase;
                 break;
-
+            
+            // Chase the player state
             case AIState.Chase:
                 _enemyColor.material.color = Color.red;
                 Chase();
@@ -98,6 +95,7 @@ public class EnemyAIController : MonoBehaviour
                 }
                 break;
 
+            // Search for the player at their last known positions state
             case AIState.Search:
                 _enemyColor.material.color = Color.magenta;
                 Search();
@@ -116,10 +114,10 @@ public class EnemyAIController : MonoBehaviour
                 }
                 break;
 
+            // Look left and right for the player at their last known position state
             case AIState.LookAround:
                 _enemyColor.material.color = Color.cyan;
                 LookAround();
-
 
                 if (_canSeePlayer == true)
                 {
@@ -137,6 +135,7 @@ public class EnemyAIController : MonoBehaviour
                 }
                 break;
 
+            // Caught the player state
             case AIState.CaughtPlayer:
                 _enemyColor.material.color = Color.blue;
                 Debug.Log("Game over! Player caught");
@@ -238,16 +237,14 @@ public class EnemyAIController : MonoBehaviour
     {
         _navMeshAgent.speed = 0;
         _navMeshAgent.SetDestination(transform.position);
-        //FIXME!!! REPLACE WITH PLAYER SCRIPT NAME
-        var playerScript = _player.GetComponent<playerController>();
-        Debug.Log("I caught the player! Implement being caught in the player script and fix me");
-        //if (playerScript != null) playerScript._playerCaptured = true;
+
+        _playerScript.CaughtPlayer(this.gameObject);
     }
 
     // FIXME!! Fix up logic
     private IEnumerator WaitTimer()
     {
-        _IAmWaiting = true;
+        //_IAmWaiting = true;
 
         yield return new WaitForSeconds(_waitTime);
 
@@ -268,6 +265,8 @@ public class EnemyAIController : MonoBehaviour
             {
                 Vector3 toPlayer = (_player.transform.position - transform.position).normalized;
 
+                // FOV check using a dot product. If the dot product of the guards forward vector and the direction to the player is greater than
+                // 0.55f, we consider the player to be in the visual FOV of the guard
                 if (Vector3.Dot(transform.TransformDirection(Vector3.forward).normalized, toPlayer) > 0.55f)
                 {
                     Debug.Log("Dot product check was true");
@@ -286,6 +285,12 @@ public class EnemyAIController : MonoBehaviour
         else
         {
             _canSeePlayer = false;
+        }
+
+        // If player is very close to the guard, we assume the guard would notice the players presence and consider them as seeing the player
+        if (Vector3.Distance(transform.position, _player.transform.position) < _alwaysSeeRadius)
+        {
+            _canSeePlayer = true;
         }
 
         yield return new WaitForSeconds(_proxCheckWaitTime);
