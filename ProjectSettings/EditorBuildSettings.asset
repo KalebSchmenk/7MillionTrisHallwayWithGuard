@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/CastleLevel.unity
+    guid: 5f3942fda25016d49b6ae591893f3f13
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a5e56260191da344e817e8918f857daf, type: 2}

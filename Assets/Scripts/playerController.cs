@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour{
     public PlayerMovement playerControls;
@@ -45,7 +46,9 @@ public class playerController : MonoBehaviour{
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(_rotateTowards.normalized), step);
         }
         if(Input.GetKeyDown(KeyCode.Escape)){
+            // DELETE ON BUILD
             UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
 
         mDirection = lookDirection.forward * moveDirection.y + lookDirection.right * moveDirection.x;

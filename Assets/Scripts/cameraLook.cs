@@ -28,8 +28,8 @@ private void Update() {
         lookDirection = look.ReadValue<Vector2>();
         float lookX = lookDirection.x * Time.deltaTime * camSens;
         float lookY = lookDirection.y * Time.deltaTime * camSens;
-        camY += lookX;
-        camX -=lookY;
+        camY += lookX; 
+        camX -= lookY; 
         camX = Mathf.Clamp(camX, -90f, 90);
 
         transform.rotation = Quaternion.Euler(camX, camY, 0);
