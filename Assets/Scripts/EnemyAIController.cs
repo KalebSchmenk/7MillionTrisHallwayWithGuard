@@ -171,12 +171,10 @@ public class EnemyAIController : MonoBehaviour
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomPosition, out hit, _walkRadius, 1) && hit.position != _lastPosition)
             {
-                Debug.Log("Got a new target position");
                 targetPosition = hit.position;
 
                 _lastPosition = targetPosition;
                 
-                Debug.Log("Target Position: " + targetPosition);
                 return targetPosition;
 
             }

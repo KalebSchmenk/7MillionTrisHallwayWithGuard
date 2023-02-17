@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour{
 
     private InputAction move;
 
+    public bool hasCrown = false;
     private bool _isCaught = false;
     private GameObject _guard;
     private Vector3 _rotateTowards;
