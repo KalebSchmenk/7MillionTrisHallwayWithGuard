@@ -236,7 +236,7 @@ public class EnemyAIController : MonoBehaviour
         _navMeshAgent.speed = 0;
         _navMeshAgent.SetDestination(transform.position);
 
-        _playerScript.CaughtPlayer(this.gameObject);
+        _playerScript.CaughtPlayer();
     }
 
     // FIXME!! Fix up logic
