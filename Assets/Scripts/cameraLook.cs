@@ -8,15 +8,23 @@ public class cameraLook : MonoBehaviour
 public PlayerMovement playerControls;
 Vector2 lookDirection;
 private InputAction look;
-public float camSens;
+public float mouseSens = 25.0f;
+public float controllerSens = 125.0f;
+
+private float lookSens;
+
 
 public Transform pLooking;
+private bool controller;
 
 float camX;
 float camY;
 
 
 private void Awake() {
+       
+
+
     playerControls = new PlayerMovement();
 }
 private void Start() {
@@ -25,15 +33,27 @@ private void Start() {
 }
 
 private void Update() {
+
+        if(Gamepad.current != null){
+                lookSens = controllerSens;
+        }
+
+       if(Gamepad.current == null){
+                lookSens = mouseSens;
+        }
+
+        
         lookDirection = look.ReadValue<Vector2>();
-        float lookX = lookDirection.x * Time.deltaTime * camSens;
-        float lookY = lookDirection.y * Time.deltaTime * camSens;
+        float lookX = lookDirection.x * Time.deltaTime * lookSens;
+        float lookY = lookDirection.y * Time.deltaTime * lookSens;
         camY += lookX; 
         camX -= lookY; 
         camX = Mathf.Clamp(camX, -90f, 90);
 
         transform.rotation = Quaternion.Euler(camX, camY, 0);
         pLooking.rotation = Quaternion.Euler(0, camY, 0);
+
+       
 }
 
 
@@ -45,5 +65,8 @@ private void OnEnable() {
 private void OnDisable() {
     look.Disable();
 }
+
+
+
 
 }

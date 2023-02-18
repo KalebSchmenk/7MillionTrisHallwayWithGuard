@@ -221,7 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429fa2cc0489bdd428beab283b315df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSens: 25
+  mouseSens: 25
+  controllerSens: 125
   pLooking: {fileID: 1909546751}
 --- !u!114 &411004595
 MonoBehaviour:
@@ -566,8 +567,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 20
+  _sendToMenuIn: 7.5
   lookDirection: {fileID: 1909546751}
   hasCrown: 0
+  loseUIParent: {fileID: 0}
 --- !u!114 &1909546753
 MonoBehaviour:
   m_ObjectHideFlags: 0
