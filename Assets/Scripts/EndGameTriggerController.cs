@@ -17,6 +17,8 @@ public class EndGameTriggerController : MonoBehaviour
             {
                 Debug.Log("Game win! Implement win game functionality");
 
+                playerScript._wonGame = true;
+
                 winUIParent.SetActive(true);
                 StartCoroutine(AwaitSendToMainMenu());
             }
@@ -27,6 +29,9 @@ public class EndGameTriggerController : MonoBehaviour
     {
         yield return new WaitForSeconds(_sendToMenuIn);
 
-        SceneManager.LoadScene("MainMenu");
+        // RE-IMPLEMENT THIS ON MAIN BUILD!
+        //SceneManager.LoadScene("MainMenu");
+        // DELETE THIS FOR MAIN BUILD!
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

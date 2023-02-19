@@ -24,6 +24,7 @@ public class playerController : MonoBehaviour{
 
     public bool hasCrown = false;
     private bool _isCaught = false;
+    public bool _wonGame = false;
     [SerializeField] GameObject loseUIParent;
 
 
@@ -60,7 +61,7 @@ public class playerController : MonoBehaviour{
     private void FixedUpdate() {
 
         // If check that denies movement if the player is caught by the guard
-        if (_isCaught)
+        if (_isCaught || _wonGame)
         {
             rb.velocity = Vector3.zero;
             return;
@@ -82,6 +83,9 @@ public class playerController : MonoBehaviour{
     {
         yield return new WaitForSeconds(_sendToMenuIn);
 
-        SceneManager.LoadScene("MainMenu");
+        // RE-IMPLEMENT THIS ON MAIN BUILD!
+        //SceneManager.LoadScene("MainMenu");
+        // DELETE THIS FOR MAIN BUILD!
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
