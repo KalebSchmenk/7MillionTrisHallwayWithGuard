@@ -4452,6 +4452,7 @@ MonoBehaviour:
   _sendToMenuIn: 7.5
   lookDirection: {fileID: 1509244019}
   hasCrown: 0
+  _wonGame: 0
   loseUIParent: {fileID: 448308669}
 --- !u!54 &1509244015
 Rigidbody:
