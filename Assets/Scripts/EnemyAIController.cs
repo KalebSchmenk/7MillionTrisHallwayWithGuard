@@ -138,7 +138,6 @@ public class EnemyAIController : MonoBehaviour
             // Caught the player state
             case AIState.CaughtPlayer:
                 _enemyColor.material.color = Color.blue;
-                Debug.Log("Game over! Player caught");
                 CatchPlayer();
 
                 // Player looks toward Guard
@@ -267,7 +266,6 @@ public class EnemyAIController : MonoBehaviour
                 // 0.55f, we consider the player to be in the visual FOV of the guard
                 if (Vector3.Dot(transform.TransformDirection(Vector3.forward).normalized, toPlayer) > 0.55f)
                 {
-                    Debug.Log("Dot product check was true");
                     _canSeePlayer = true;
                 }
                 else

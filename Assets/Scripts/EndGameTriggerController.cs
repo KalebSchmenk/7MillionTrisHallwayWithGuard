@@ -15,8 +15,6 @@ public class EndGameTriggerController : MonoBehaviour
 
             if (playerScript.hasCrown == true)
             {
-                Debug.Log("Game win! Implement win game functionality");
-
                 playerScript._wonGame = true;
 
                 winUIParent.SetActive(true);
