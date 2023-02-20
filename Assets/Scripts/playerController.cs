@@ -41,7 +41,6 @@ public class playerController : MonoBehaviour{
  
         if(Input.GetKeyDown(KeyCode.Escape)){
             // DELETE ON BUILD
-            UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
 
