@@ -32,7 +32,7 @@ private void Start() {
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 }
 
-private void Update() {
+private void LateUpdate() {
 
         if(Gamepad.current != null){
                 lookSens = controllerSens;
@@ -44,8 +44,8 @@ private void Update() {
 
         
         lookDirection = look.ReadValue<Vector2>();
-        float lookX = lookDirection.x * Time.deltaTime * lookSens;
-        float lookY = lookDirection.y * Time.deltaTime * lookSens;
+        float lookX = lookDirection.x * lookSens * Time.deltaTime;
+        float lookY = lookDirection.y * lookSens * Time.deltaTime;
         camY += lookX; 
         camX -= lookY; 
         camX = Mathf.Clamp(camX, -90f, 90);

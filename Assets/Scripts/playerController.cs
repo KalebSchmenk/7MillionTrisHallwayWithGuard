@@ -40,7 +40,6 @@ public class playerController : MonoBehaviour{
         moveDirection = move.ReadValue<Vector2>();
  
         if(Input.GetKeyDown(KeyCode.Escape)){
-            // DELETE ON BUILD
             Application.Quit();
         }
 
@@ -59,7 +58,7 @@ public class playerController : MonoBehaviour{
 
     private void FixedUpdate() {
 
-        // If check that denies movement if the player is caught by the guard
+        // If check that denies movement if the player is caught by the guard or game is over
         if (_isCaught || _wonGame)
         {
             rb.velocity = Vector3.zero;

@@ -140,7 +140,6 @@ public class EnemyAIController : MonoBehaviour
                 _enemyColor.material.color = Color.blue;
                 CatchPlayer();
 
-                // Player looks toward Guard
                 break;
         }
     }
@@ -238,11 +237,9 @@ public class EnemyAIController : MonoBehaviour
         _playerScript.CaughtPlayer();
     }
 
-    // FIXME!! Fix up logic
+    // Wait co-routine that halts the guard for a moment after it reaches its destination
     private IEnumerator WaitTimer()
     {
-        //_IAmWaiting = true;
-
         yield return new WaitForSeconds(_waitTime);
 
         if (_IAmWaiting == true) _IAmWaiting = false;
