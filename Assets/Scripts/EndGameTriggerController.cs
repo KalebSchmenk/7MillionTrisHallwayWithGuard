@@ -7,6 +7,7 @@ public class EndGameTriggerController : MonoBehaviour
 {
     [SerializeField] GameObject winUIParent;
     [SerializeField] float _sendToMenuIn = 2.5f;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

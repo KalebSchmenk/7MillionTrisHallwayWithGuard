@@ -214,8 +214,8 @@ MonoBehaviour:
   _waitTime: 6.5
   _proximityRange: 50
   _proxCheckWaitTime: 0.2
-  _navMeshAgentSprintSpeed: 7.5
-  _navMeshAgentJogSpeed: 5.5
+  _navMeshAgentSprintSpeed: 6
+  _navMeshAgentJogSpeed: 4.5
   _lookAroundSpeed: 45
   _alwaysSeeRadius: 7.5
 --- !u!195 &435888240030315399
