@@ -11,6 +11,29 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] Button _quitGameButton;
     [SerializeField] GameObject _pauseMenuParent;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_pauseMenuParent.activeSelf == false)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
+    }
+
+    private void PauseGame()
+    {
+        Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+        _pauseMenuParent.SetActive(true);
+    }
+
     public void ResumeGame()
     {
         Cursor.visible = false;

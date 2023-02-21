@@ -24,11 +24,9 @@ public class playerController : MonoBehaviour{
 
     public bool hasCrown = false;
     private bool _isCaught = false;
-    private bool _isPaused = false;
     public bool _wonGame = false;
 
     [SerializeField] GameObject _loseUIParent;
-    [SerializeField] GameObject _pauseMenu;
 
 
     private void Start() {
@@ -41,10 +39,6 @@ public class playerController : MonoBehaviour{
     }
     void Update() {
         moveDirection = move.ReadValue<Vector2>();
- 
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            PauseGame();
-        }
 
         mDirection = lookDirection.forward * moveDirection.y + lookDirection.right * moveDirection.x;
     }
@@ -88,19 +82,5 @@ public class playerController : MonoBehaviour{
         //SceneManager.LoadScene("MainMenu");
         // DELETE THIS FOR MAIN BUILD!
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    private void PauseGame()
-    {
-        if (Time.timeScale == 0) _isPaused = true;
-
-        if (!_isPaused)
-        {
-            Cursor.visible = true;
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
-            Time.timeScale = 0;
-            _pauseMenu.SetActive(true);
-            _isPaused = true;
-        }
     }
 }
