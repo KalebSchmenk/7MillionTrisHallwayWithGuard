@@ -14,6 +14,8 @@ public class playerController : MonoBehaviour{
     Rigidbody rb;
 
     private InputAction move;
+    private InputAction fire;
+    
 
     public Transform lookDirection;
 
@@ -25,6 +27,9 @@ public class playerController : MonoBehaviour{
     public bool hasCrown = false;
     private bool _isCaught = false;
     public bool _wonGame = false;
+    
+
+    
 
     [SerializeField] GameObject _loseUIParent;
 
@@ -41,15 +46,29 @@ public class playerController : MonoBehaviour{
         moveDirection = move.ReadValue<Vector2>();
 
         mDirection = lookDirection.forward * moveDirection.y + lookDirection.right * moveDirection.x;
+
+        if(fire.triggered){
+            Debug.Log("Selected");
+        }
+
+
+        
+        
     }
     private void OnEnable() {
         move = playerControls.Player.Move;
+        fire = playerControls.Player.Fire;
+        
         move.Enable();
+        fire.Enable();
+        
 
     }
 
     private void OnDisable() {
         move.Disable();
+        fire.Disable();
+       
         
     }
 

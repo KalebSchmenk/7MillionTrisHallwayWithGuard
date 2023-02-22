@@ -4,20 +4,30 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenuController : MonoBehaviour
 {
+    public PlayerMovement playerControls;
+    private InputAction pause;
+
     [SerializeField] Button _resumeGameButton;
     [SerializeField] Button _quitGameButton;
     [SerializeField] GameObject _pauseMenuParent;
     public bool _paused = false;
 
     public bool _playerCaught = false;
+    
+
+    void Awake(){
+        playerControls = new PlayerMovement();
+    }
 
     private void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+
+        if (pause.triggered)
         {
             if (_pauseMenuParent.activeSelf == false)
             {
@@ -56,4 +66,15 @@ public class PauseMenuController : MonoBehaviour
         //Application.Quit();
         SceneManager.LoadScene("MainMenu");
     }
+
+    private void OnEnable(){
+        pause = playerControls.Player.Pause;
+        pause.Enable();
+    }
+
+    private void OnDisable(){
+        pause.Disable();
+    }
+
+
 }
