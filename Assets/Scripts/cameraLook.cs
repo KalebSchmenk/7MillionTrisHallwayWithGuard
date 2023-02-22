@@ -20,6 +20,9 @@ public class cameraLook : MonoBehaviour
     float camX;
     float camY;
 
+    float lookX;
+    float lookY;
+
 
     private void Awake() 
     {
@@ -32,7 +35,7 @@ public class cameraLook : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void Update() 
+    private void LateUpdate() 
     {
         if(Gamepad.current != null)
         {
@@ -44,13 +47,10 @@ public class cameraLook : MonoBehaviour
              lookSens = mouseSens;
         }
 
-        float lookX = 0;
-        float lookY = 0;
-
         lookDirection = look.ReadValue<Vector2>();
 
-        lookX = lookDirection.x * lookSens * Time.deltaTime;
-        lookY = lookDirection.y * lookSens * Time.deltaTime;
+        lookX = lookDirection.x * 0.2f;
+        lookY = lookDirection.y * 0.2f;
         
         camY += lookX; 
         camX -= lookY;

@@ -12,4 +12,4 @@ EditorBuildSettings:
     path: Assets/Scenes/CastleLevel.unity
     guid: 5f3942fda25016d49b6ae591893f3f13
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: a5e56260191da344e817e8918f857daf, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: ca98ddcd0868dc14aaf0b42c27e1e61c, type: 2}
