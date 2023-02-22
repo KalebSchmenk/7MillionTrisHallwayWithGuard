@@ -54,7 +54,7 @@ public class cameraLook : MonoBehaviour
              lookSens = mouseSens / 100;
         }
 
-        if(pauseMenu.paused == false){
+        if(pauseMenu._paused == false){
             lookDirection = look.ReadValue<Vector2>();
 
             lookX = lookDirection.x * lookSens;

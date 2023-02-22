@@ -29,8 +29,8 @@ public class EndGameTriggerController : MonoBehaviour
         yield return new WaitForSeconds(_sendToMenuIn);
 
         // RE-IMPLEMENT THIS ON MAIN BUILD!
-        //SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
         // DELETE THIS FOR MAIN BUILD!
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

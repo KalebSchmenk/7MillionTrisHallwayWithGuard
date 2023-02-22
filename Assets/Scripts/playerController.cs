@@ -70,6 +70,8 @@ public class playerController : MonoBehaviour{
     public void CaughtPlayer()
     {
         _isCaught = true;
+        PauseMenuController pauseMenu = GetComponent<PauseMenuController>();
+        pauseMenu.ResumeGame();
         _loseUIParent.SetActive(true);
         StartCoroutine(AwaitSendToMainMenu());
     }

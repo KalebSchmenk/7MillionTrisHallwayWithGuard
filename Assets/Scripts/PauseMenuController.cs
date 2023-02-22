@@ -10,7 +10,9 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] Button _resumeGameButton;
     [SerializeField] Button _quitGameButton;
     [SerializeField] GameObject _pauseMenuParent;
-    public bool paused = false;
+    public bool _paused = false;
+
+    public bool _playerCaught = false;
 
     private void Update()
     {
@@ -30,11 +32,13 @@ public class PauseMenuController : MonoBehaviour
 
     private void PauseGame()
     {
+        if (_playerCaught) return;
+
         Cursor.visible = true;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
         _pauseMenuParent.SetActive(true);
-        paused = true;
+        _paused = true;
     }
 
     public void ResumeGame()
@@ -43,12 +47,13 @@ public class PauseMenuController : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         _pauseMenuParent.SetActive(false);
-        paused = false;
+        _paused = false;
     }
 
     public void QuitGame()
     {
         Debug.Log("Game quit!");
-        Application.Quit();
+        //Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 }
