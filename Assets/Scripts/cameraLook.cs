@@ -39,18 +39,17 @@ public class cameraLook : MonoBehaviour
     {
         if(Gamepad.current != null)
         {
-             lookSens = controllerSens;
+             lookSens = controllerSens / 100;
         }
-
-        if(Gamepad.current == null)
+        else if (Gamepad.current == null)
         {
-             lookSens = mouseSens;
+             lookSens = mouseSens / 100;
         }
 
         lookDirection = look.ReadValue<Vector2>();
 
-        lookX = lookDirection.x * 0.2f;
-        lookY = lookDirection.y * 0.2f;
+        lookX = lookDirection.x * lookSens;
+        lookY = lookDirection.y * lookSens;
         
         camY += lookX; 
         camX -= lookY;
