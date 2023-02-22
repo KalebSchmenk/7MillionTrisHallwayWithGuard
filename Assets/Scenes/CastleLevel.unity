@@ -3177,6 +3177,7 @@ MonoBehaviour:
   _resumeGameButton: {fileID: 1477874365}
   _quitGameButton: {fileID: 1959204612}
   _pauseMenuParent: {fileID: 1245684768}
+  paused: 0
 --- !u!1001 &178075054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39079,6 +39080,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 777571707435994198, guid: 5c4bb28d74624ed458776acffccade7a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 174319847}
     - target: {fileID: 777571707435994198, guid: 5c4bb28d74624ed458776acffccade7a, type: 3}
       propertyPath: mouseSens
       value: 25

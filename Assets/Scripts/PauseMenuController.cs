@@ -10,9 +10,11 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] Button _resumeGameButton;
     [SerializeField] Button _quitGameButton;
     [SerializeField] GameObject _pauseMenuParent;
+    public bool paused = false;
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (_pauseMenuParent.activeSelf == false)
@@ -32,6 +34,7 @@ public class PauseMenuController : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
         _pauseMenuParent.SetActive(true);
+        paused = true;
     }
 
     public void ResumeGame()
@@ -40,6 +43,7 @@ public class PauseMenuController : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         _pauseMenuParent.SetActive(false);
+        paused = false;
     }
 
     public void QuitGame()
