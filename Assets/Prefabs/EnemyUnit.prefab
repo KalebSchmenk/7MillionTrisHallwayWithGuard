@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 435888240030315399}
   m_Layer: 0
   m_Name: EnemyUnit
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,8 +214,8 @@ MonoBehaviour:
   _waitTime: 6.5
   _proximityRange: 50
   _proxCheckWaitTime: 0.2
-  _navMeshAgentSprintSpeed: 6
-  _navMeshAgentJogSpeed: 4.5
+  _navMeshAgentSprintSpeed: 5
+  _navMeshAgentJogSpeed: 3
   _lookAroundSpeed: 45
   _alwaysSeeRadius: 7.5
 --- !u!195 &435888240030315399

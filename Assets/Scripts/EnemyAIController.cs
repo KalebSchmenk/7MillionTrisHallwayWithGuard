@@ -290,4 +290,29 @@ public class EnemyAIController : MonoBehaviour
         
         StartCoroutine(ProximityCheck());
     }
+
+    public int GetState()
+    {
+        int stateAsInt = 0;
+
+        if (_AIState == AIState.Roam) 
+        {
+            stateAsInt = 1;
+            return stateAsInt;
+        }
+        else if (_AIState == AIState.Search)
+        {
+            stateAsInt = 2;
+            return stateAsInt;
+        }
+        else if (_AIState == AIState.Chase)
+        {
+            stateAsInt = 3;
+            return stateAsInt;
+        }
+        else
+        {
+            return stateAsInt;
+        }
+    }
 }
