@@ -35,12 +35,6 @@ public class cameraLook : MonoBehaviour
 
     public bool moving;
 
-   
-    
-    
-
- 
-
 
     private void Update() {
         playerController playerController = player.GetComponent<playerController>();
@@ -75,7 +69,9 @@ public class cameraLook : MonoBehaviour
 
 
         }
+
     }
+
     private void Awake() 
     {
         
@@ -107,9 +103,8 @@ public class cameraLook : MonoBehaviour
         if(pauseMenu._paused == false){
             lookDirection = look.ReadValue<Vector2>();
 
-            Debug.Log("Time.deltaTime: " + Time.deltaTime);
-            lookX = lookDirection.x * lookSens * Time.deltaTime * 100;
-            lookY = lookDirection.y * lookSens * Time.deltaTime * 100;
+            lookX = lookDirection.x * lookSens;
+            lookY = lookDirection.y * lookSens;
             
             camY += lookX; 
             camX -= lookY;

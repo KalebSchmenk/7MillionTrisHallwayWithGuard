@@ -66,13 +66,14 @@ public class playerController : MonoBehaviour{
     private void Start() {
         rb = GetComponent<Rigidbody>();  
         rb.freezeRotation = true;
+
+        stamina = maxStamina;
     }
     void Awake() {
         playerControls = new PlayerMovement();
           
     }
     void Update() {
-        
 
         if(isSprinting == true){
             stamina -= 10 * Time.deltaTime;
@@ -137,9 +138,10 @@ public class playerController : MonoBehaviour{
         if(stamEmpty == false){
             playerControls.Player.Sprint.started += Sprinting;
         }
+        stamina = Mathf.Clamp(stamina, 0, maxStamina);
         int roundedStam = Mathf.CeilToInt(stamina);
         stamText.text = "Stamina: " + roundedStam;
-        
+
     }
     private void OnEnable() {
         move = playerControls.Player.Move;
