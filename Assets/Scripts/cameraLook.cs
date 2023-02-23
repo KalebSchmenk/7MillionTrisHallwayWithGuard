@@ -95,8 +95,6 @@ public class cameraLook : MonoBehaviour
         PauseMenuController pauseMenu = player.GetComponent<PauseMenuController>();
   
         
-        
-         
         if(Gamepad.current != null)
         {
              lookSens = controllerSens / 100;
@@ -109,8 +107,9 @@ public class cameraLook : MonoBehaviour
         if(pauseMenu._paused == false){
             lookDirection = look.ReadValue<Vector2>();
 
-            lookX = lookDirection.x * lookSens;
-            lookY = lookDirection.y * lookSens;
+            Debug.Log("Time.deltaTime: " + Time.deltaTime);
+            lookX = lookDirection.x * lookSens * Time.deltaTime * 100;
+            lookY = lookDirection.y * lookSens * Time.deltaTime * 100;
             
             camY += lookX; 
             camX -= lookY;
@@ -118,9 +117,7 @@ public class cameraLook : MonoBehaviour
             camX = Mathf.Clamp(camX, -90, 90);
 
             pLooking.transform.rotation = Quaternion.Euler(0, camY, 0);
-            transform.rotation = Quaternion.Euler(camX, camY, 0);
-            
-            
+            transform.rotation = Quaternion.Euler(camX, camY, 0);  
         }
        
     }

@@ -300,12 +300,12 @@ public class EnemyAIController : MonoBehaviour
             stateAsInt = 1;
             return stateAsInt;
         }
-        else if (_AIState == AIState.Search)
+        else if (_AIState == AIState.Search || _AIState == AIState.LookAround)
         {
             stateAsInt = 2;
             return stateAsInt;
         }
-        else if (_AIState == AIState.Chase)
+        else if (_AIState == AIState.Chase || _AIState == AIState.CaughtPlayer)
         {
             stateAsInt = 3;
             return stateAsInt;

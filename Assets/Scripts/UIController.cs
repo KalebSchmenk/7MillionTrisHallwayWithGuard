@@ -13,15 +13,15 @@ public class UIController : MonoBehaviour
     bool _isSearching = false;
     bool _isChasing = false;
 
-    // Roam State As Int = 1
-    // Search State As Int = 2
-    // Chase State As Int = 3
-    // Return of 0 means state was not any of the listed
     private void Update()
     {
         FindEnemies();
 
-        foreach(GameObject unit in _enemyUnits) 
+        // Roam State As Int = 1
+        // Search State and Look State As Int = 2
+        // Chase State and CaughtPlayer State As Int = 3
+        // Return of 0 means state was not any of the listed
+        foreach (GameObject unit in _enemyUnits) 
         {
             EnemyAIController unitAI = unit.GetComponent<EnemyAIController>();
 
