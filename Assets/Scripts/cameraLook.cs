@@ -93,11 +93,11 @@ public class cameraLook : MonoBehaviour
         
         if(Gamepad.current != null)
         {
-             lookSens = controllerSens / 100;
+            lookSens = controllerSens / 100 * LookSensManager._sliderValue;
         }
         else if (Gamepad.current == null)
         {
-             lookSens = mouseSens / 100;
+            lookSens = mouseSens / 100 * LookSensManager._sliderValue;
         }
 
         if(pauseMenu._paused == false){
