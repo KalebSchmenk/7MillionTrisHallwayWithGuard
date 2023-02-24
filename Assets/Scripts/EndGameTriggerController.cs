@@ -7,6 +7,10 @@ public class EndGameTriggerController : MonoBehaviour
 {
     [SerializeField] GameObject winUIParent;
     [SerializeField] float _sendToMenuIn = 2.5f;
+    public AudioSource winMusic;
+    public AudioClip winSound;
+    private bool winSoundPlayed = false;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +21,9 @@ public class EndGameTriggerController : MonoBehaviour
             if (playerScript.hasCrown == true)
             {
                 playerScript._wonGame = true;
+                if(winSoundPlayed == false){
+                    winMusic.PlayOneShot(winSound);
+                }
 
                 winUIParent.SetActive(true);
                 StartCoroutine(AwaitSendToMainMenu());

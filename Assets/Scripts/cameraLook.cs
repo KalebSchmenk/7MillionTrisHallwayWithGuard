@@ -35,12 +35,15 @@ public class cameraLook : MonoBehaviour
 
     public bool moving;
 
+    private bool isMoving;
 
+    public Animator bobAnim;
     private void Update() {
         playerController playerController = player.GetComponent<playerController>();
 
         isSprinting = playerController.isSprinting;
         stamEmpty = playerController.stamEmpty;
+        isMoving = playerController.isMoving;
         
         if(walkFOV > sprintFOV){
             walkFOV = sprintFOV;
@@ -57,8 +60,23 @@ public class cameraLook : MonoBehaviour
                 walkFOV += 10 * Time.deltaTime;
                 Camera.main.fieldOfView = walkFOV;
                 moving = true;
+                bobAnim.SetTrigger("run");
+                bobAnim.ResetTrigger("idle");
+                bobAnim.ResetTrigger("walk");
             
 
+        }
+
+        if(isSprinting == false && isMoving == true){
+            bobAnim.SetTrigger("walk");
+            bobAnim.ResetTrigger("idle");
+            bobAnim.ResetTrigger("run");
+        }
+
+        if(isMoving == false){
+            bobAnim.SetTrigger("idle");
+            bobAnim.ResetTrigger("walk");
+            bobAnim.ResetTrigger("run");
         }
 
         if(isSprinting == false){
@@ -81,7 +99,7 @@ public class cameraLook : MonoBehaviour
 
     private void Start() 
     {
-        
+        bobAnim = GetComponent<Animator>();
         Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }

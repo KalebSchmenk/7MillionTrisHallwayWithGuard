@@ -12,6 +12,9 @@ public class UIController : MonoBehaviour
     bool _isRoaming = true;
     bool _isSearching = false;
     bool _isChasing = false;
+    public bool chaseMusic;
+    public bool normalMusic;
+   
 
     private void Update()
     {
@@ -69,6 +72,9 @@ public class UIController : MonoBehaviour
         _searching.SetActive(false);
         _chasing.SetActive(false);
         _notSeen.SetActive(true);
+        chaseMusic = false;
+        normalMusic = true;
+        
     }
 
     public void Searching()
@@ -76,13 +82,18 @@ public class UIController : MonoBehaviour
         _chasing.SetActive(false);
         _notSeen.SetActive(false);
         _searching.SetActive(true);
+        chaseMusic = false;
+        normalMusic = true;
     }
 
     public void Chasing()
     {
+        
         _searching.SetActive(false);
         _notSeen.SetActive(false);
         _chasing.SetActive(true);
+        chaseMusic = true;
+        normalMusic = false;
 
     }
 

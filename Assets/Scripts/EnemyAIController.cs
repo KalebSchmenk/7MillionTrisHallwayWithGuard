@@ -50,6 +50,9 @@ public class EnemyAIController : MonoBehaviour
 
     private GameObject _player;
     private playerController _playerScript;
+    
+
+    
 
 
     void Start()

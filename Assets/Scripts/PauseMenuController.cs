@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -17,6 +18,26 @@ public class PauseMenuController : MonoBehaviour
     public bool _paused = false;
 
     public bool _playerCaught = false;
+
+    public GameObject selectedPause;
+
+    public GameObject playerWalkObject;
+    public GameObject playerSprintObject;
+    public AudioSource playerWalkSource;
+    public AudioSource playerSprintSource;
+    public GameObject backgroundMusic;
+    public GameObject chaseMusic;
+    public GameObject menuSoundsObject;
+
+    
+
+    public AudioSource menuSounds;
+    public AudioClip buttonPress;
+
+  
+
+
+   
     
 
     void Awake(){
@@ -38,6 +59,9 @@ public class PauseMenuController : MonoBehaviour
                 ResumeGame();
             }
         }
+        if(_playerCaught){
+            menuSoundsObject.SetActive(false);
+        }
     }
 
     private void PauseGame()
@@ -49,22 +73,41 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 0;
         _pauseMenuParent.SetActive(true);
         _paused = true;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(selectedPause);
+        playerWalkSource.mute = true;
+        playerSprintSource.mute = true;
+        playerWalkObject.SetActive(false);
+        playerSprintObject.SetActive(false);
+        backgroundMusic.SetActive(false);
+        chaseMusic.SetActive(false);
+        
     }
 
     public void ResumeGame()
     {
+        
+        menuSounds.PlayOneShot(buttonPress);
         Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         _pauseMenuParent.SetActive(false);
         _paused = false;
+        playerWalkObject.SetActive(true);
+        playerSprintObject.SetActive(true);
+        backgroundMusic.SetActive(true);
+        chaseMusic.SetActive(true);
+        
+        
     }
 
     public void QuitGame()
     {
+        StartCoroutine(SoundBeforeMainMenu());
         Debug.Log("Game quit!");
         //Application.Quit();
-        SceneManager.LoadScene("MainMenu");
+        
+   
     }
 
     private void OnEnable(){
@@ -75,6 +118,14 @@ public class PauseMenuController : MonoBehaviour
     private void OnDisable(){
         pause.Disable();
     }
+
+    private IEnumerator SoundBeforeMainMenu(){
+        menuSounds.PlayOneShot(buttonPress);
+        yield return new WaitForSecondsRealtime(0.3f);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+
 
 
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class playerController : MonoBehaviour{
@@ -37,14 +38,12 @@ public class playerController : MonoBehaviour{
     Vector3 mDirection;
 
     public bool hasCrown = false;
-    private bool _isCaught = false;
+    public bool _isCaught = false;
     public bool _wonGame = false;
 
     public bool isSprinting = false;
     public bool stamEmpty = false;
 
-    public GameObject stamTextObject;
-    public TextMeshProUGUI stamText;
 
     private bool stamRecharge;
 
@@ -55,6 +54,27 @@ public class playerController : MonoBehaviour{
 
     private bool soundDelay;
 
+    public Image stamMask;
+    private float normSize;
+
+    public GameObject enemy;
+
+    private bool isChasing;
+
+    public GameObject walkObject;
+    public GameObject sprintObject;
+    public GameObject backgroundmusicObject;
+    public GameObject chaseMusicObject;
+    public GameObject menuSoundsObject;
+    public GameObject miscSoundsObject;
+
+    public AudioSource loseSoundSource;
+    public AudioClip loseSound;
+
+    private bool loseSoundPlayed = false;
+
+    public GameObject heldCrown;
+
   
     
         
@@ -64,6 +84,7 @@ public class playerController : MonoBehaviour{
 
 
     private void Start() {
+        normSize = stamMask.rectTransform.rect.width;
         rb = GetComponent<Rigidbody>();  
         rb.freezeRotation = true;
         Time.timeScale = 1;
@@ -76,6 +97,11 @@ public class playerController : MonoBehaviour{
           
     }
     void Update() {
+
+        if(hasCrown == true){
+            heldCrown.SetActive(true);
+        }
+        StamVisualValue(stamina/(float)maxStamina);
 
         if(isSprinting == true){
             stamina -= 10 * Time.deltaTime;
@@ -142,7 +168,7 @@ public class playerController : MonoBehaviour{
         }
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
         int roundedStam = Mathf.CeilToInt(stamina);
-        stamText.text = "Stamina: " + roundedStam;
+       
 
     }
     private void OnEnable() {
@@ -192,11 +218,25 @@ public class playerController : MonoBehaviour{
         PauseMenuController pauseMenu = GetComponent<PauseMenuController>();
         pauseMenu.ResumeGame();
         _loseUIParent.SetActive(true);
+            
+        walkObject.SetActive(false);
+        sprintObject.SetActive(false);
+        backgroundmusicObject.SetActive(false);
+        chaseMusicObject.SetActive(false);
+        menuSoundsObject.SetActive(false);
+        miscSoundsObject.SetActive(false);
+        playerSounds.mute = true;
+        if(loseSoundPlayed == false){
+            loseSoundSource.PlayOneShot(loseSound);
+            loseSoundPlayed = true;
+        }
         StartCoroutine(AwaitSendToMainMenu());
     }
 
     private IEnumerator AwaitSendToMainMenu()
     {
+        
+        
         yield return new WaitForSeconds(_sendToMenuIn);
 
         // RE-IMPLEMENT THIS ON MAIN BUILD!
@@ -226,6 +266,10 @@ public class playerController : MonoBehaviour{
         
         stamRecharge = true;
 
+    }
+
+    public void StamVisualValue(float amount){
+        stamMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, normSize * amount);
     }
 
 }
