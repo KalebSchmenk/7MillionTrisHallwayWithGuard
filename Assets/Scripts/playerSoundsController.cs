@@ -9,22 +9,26 @@ public class playerSoundsController : MonoBehaviour
     public AudioSource playerSounds;
 
     public GameObject player;
+    
     private bool isSprinting;
     private bool isMoving;
+    private bool isPaused;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+            playerWalkSource.mute = true;
+            playerSprintSource.mute = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         playerController playerController = player.GetComponent<playerController>();
+        PauseMenuController pauseController = player.GetComponent<PauseMenuController>();
         isMoving = playerController.isMoving;
         isSprinting = playerController.isSprinting;
- 
+        isPaused = pauseController._paused;
 
         if(isMoving == false){
             playerWalkSource.mute = true;
@@ -39,6 +43,11 @@ public class playerSoundsController : MonoBehaviour
         if(isSprinting == true){
             playerWalkSource.mute = true;
             playerSprintSource.mute = false;
+        }
+
+        if(isPaused == true){
+            playerWalkSource.mute = true;
+            playerSprintSource.mute = true;
         }
 
 

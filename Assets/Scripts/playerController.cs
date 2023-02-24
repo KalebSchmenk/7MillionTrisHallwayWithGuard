@@ -66,8 +66,10 @@ public class playerController : MonoBehaviour{
     private void Start() {
         rb = GetComponent<Rigidbody>();  
         rb.freezeRotation = true;
+        Time.timeScale = 1;
 
         stamina = maxStamina;
+        
     }
     void Awake() {
         playerControls = new PlayerMovement();
@@ -174,7 +176,8 @@ public class playerController : MonoBehaviour{
             return;
         }
         
-            rb.AddForce(mDirection.normalized * moveSpeed, ForceMode.Force);
+        rb.AddForce(mDirection.normalized * moveSpeed, ForceMode.Force);
+        
         
 
 
@@ -219,7 +222,7 @@ public class playerController : MonoBehaviour{
     }
 
     private IEnumerator StamRecharge(){
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSecondsRealtime(3.0f);
         
         stamRecharge = true;
 
