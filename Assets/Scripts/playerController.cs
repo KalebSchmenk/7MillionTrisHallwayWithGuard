@@ -235,14 +235,9 @@ public class playerController : MonoBehaviour{
 
     private IEnumerator AwaitSendToMainMenu()
     {
-        
-        
         yield return new WaitForSeconds(_sendToMenuIn);
 
-        // RE-IMPLEMENT THIS ON MAIN BUILD!
         SceneManager.LoadScene("MainMenu");
-        // DELETE THIS FOR MAIN BUILD!
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Sprinting(InputAction.CallbackContext context){

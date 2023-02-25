@@ -23,6 +23,7 @@ public class EndGameTriggerController : MonoBehaviour
                 playerScript._wonGame = true;
                 if(winSoundPlayed == false){
                     winMusic.PlayOneShot(winSound);
+                    playerScript.backgroundmusicObject.SetActive(false);
                 }
 
                 winUIParent.SetActive(true);
@@ -35,9 +36,6 @@ public class EndGameTriggerController : MonoBehaviour
     {
         yield return new WaitForSeconds(_sendToMenuIn);
 
-        // RE-IMPLEMENT THIS ON MAIN BUILD!
         SceneManager.LoadScene("MainMenu");
-        // DELETE THIS FOR MAIN BUILD!
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
