@@ -6175,9 +6175,11 @@ MonoBehaviour:
   playerWalkSource: {fileID: 655667031}
   playerSprintSource: {fileID: 1763587828}
   playerSounds: {fileID: 174319866}
+  miscSounds: {fileID: 1793410590}
   playerWalkObject: {fileID: 655667029}
   playerSprintObject: {fileID: 1763587826}
   player: {fileID: 174319847}
+  crownPickupSound: {fileID: 8300000, guid: 4180023127b8a3a42860e79885a9034d, type: 3}
 --- !u!82 &174319866
 AudioSource:
   m_ObjectHideFlags: 0
@@ -52832,32 +52834,32 @@ Transform:
   - {fileID: 1082025013}
   - {fileID: 380384349}
   - {fileID: 1496365390}
-  - {fileID: 1274539576}
+  - {fileID: 600183251}
   - {fileID: 1624422882}
-  - {fileID: 1292542520}
   - {fileID: 1257479932}
-  - {fileID: 84545300}
+  - {fileID: 461836662}
   - {fileID: 696042979}
   - {fileID: 522506226}
   - {fileID: 266644962}
   - {fileID: 662213253}
-  - {fileID: 130642753}
   - {fileID: 22476545}
-  - {fileID: 458354262}
+  - {fileID: 1292542520}
   - {fileID: 1175116624}
   - {fileID: 1225537302}
-  - {fileID: 1705858200}
+  - {fileID: 1673317577}
   - {fileID: 824374596}
   - {fileID: 1923528626}
-  - {fileID: 2101120994}
-  - {fileID: 673050997}
-  - {fileID: 600183251}
-  - {fileID: 1673317577}
-  - {fileID: 461836662}
-  - {fileID: 2089455437}
   - {fileID: 1363257157}
+  - {fileID: 1705858200}
+  - {fileID: 2101120994}
+  - {fileID: 458354262}
   - {fileID: 1245320291}
+  - {fileID: 84545300}
   - {fileID: 840589091}
+  - {fileID: 130642753}
+  - {fileID: 2089455437}
+  - {fileID: 1274539576}
+  - {fileID: 673050997}
   - {fileID: 356530960}
   - {fileID: 1793922440}
   - {fileID: 1818422087}

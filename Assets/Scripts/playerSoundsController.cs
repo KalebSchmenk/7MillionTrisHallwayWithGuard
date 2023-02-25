@@ -7,10 +7,13 @@ public class playerSoundsController : MonoBehaviour
     public AudioSource playerWalkSource;
     public AudioSource playerSprintSource;
     public AudioSource playerSounds;
+    public AudioSource miscSounds;
     public GameObject playerWalkObject;
     public GameObject playerSprintObject;
 
     public GameObject player;
+
+    public AudioClip crownPickupSound;
 
     
     
@@ -18,6 +21,8 @@ public class playerSoundsController : MonoBehaviour
     private bool isMoving;
     private bool isPaused;
     private bool isCaught;
+    private bool crownPickup;
+    private bool crownSoundPlayed = false;
 
 
     // Start is called before the first frame update
@@ -36,6 +41,7 @@ public class playerSoundsController : MonoBehaviour
         isSprinting = playerController.isSprinting;
         isPaused = pauseController._paused;
         isCaught = playerController._isCaught;
+        crownPickup = playerController.hasCrown;
 
         if(isMoving == false){
             playerWalkSource.mute = true;
@@ -62,6 +68,13 @@ public class playerSoundsController : MonoBehaviour
             playerSprintSource.mute = true;
             playerWalkObject.SetActive(false);
             playerSprintObject.SetActive(false);
+        }
+
+        if(crownPickup == true){
+            if(crownSoundPlayed == false){
+                miscSounds.PlayOneShot(crownPickupSound);
+                crownSoundPlayed = true;
+            }
         }
 
 
