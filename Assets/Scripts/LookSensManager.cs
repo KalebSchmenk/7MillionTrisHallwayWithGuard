@@ -6,6 +6,7 @@ using TMPro;
 
 public class LookSensManager : MonoBehaviour
 {
+
     [SerializeField] private Slider _slider;
     [SerializeField] private TMP_Text _valueText;
 
@@ -25,7 +26,11 @@ public class LookSensManager : MonoBehaviour
     public void SetSliderValue(float inVal)
     {
         _sliderValue = inVal;
+       
+        
 
         _sliderValue = Mathf.Clamp(_sliderValue, 0.01f, 1.0f);
     }
+
+
 }

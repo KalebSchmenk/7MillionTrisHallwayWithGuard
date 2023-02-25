@@ -289,6 +289,7 @@ MonoBehaviour:
   miscSoundsObject: {fileID: 0}
   loseSoundSource: {fileID: 0}
   loseSound: {fileID: 0}
+  heldCrown: {fileID: 0}
   _loseUIParent: {fileID: 0}
 --- !u!114 &777571707632926328
 MonoBehaviour:
@@ -333,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb7517591ad30d24c8765e8f58427574, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.34
+      value: 0.34000015
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb7517591ad30d24c8765e8f58427574, type: 3}
       propertyPath: m_LocalPosition.y
@@ -341,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb7517591ad30d24c8765e8f58427574, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.55
+      value: 0.54999924
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb7517591ad30d24c8765e8f58427574, type: 3}
       propertyPath: m_LocalRotation.w

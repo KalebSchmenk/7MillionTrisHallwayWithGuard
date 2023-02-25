@@ -14,8 +14,8 @@ public class playerController : MonoBehaviour{
     [SerializeField] float moveSpeed = 10.0f;
     [SerializeField] float _sendToMenuIn = 7.5f;
 
-    public float sprintSpeed = 15.0f;
-    public float walkSpeed = 10.0f;
+    public float sprintSpeed = 20.0f;
+    public float walkSpeed = 15.0f;
 
     
 
@@ -132,7 +132,7 @@ public class playerController : MonoBehaviour{
             stamina = 0;
             stamEmpty = true;
             isSprinting = false;
-            moveSpeed = 10;
+            moveSpeed = walkSpeed;
             StartCoroutine(StamRecharge());
             if(soundDelay == false){
                 playerSounds.clip = noStam;
@@ -247,14 +247,14 @@ public class playerController : MonoBehaviour{
 
     private void Sprinting(InputAction.CallbackContext context){
             stamRecharge = false;
-            moveSpeed = 20;
+            moveSpeed = sprintSpeed;
             isSprinting = true;
         
         
     }
 
     private void notSprinting(InputAction.CallbackContext context){
-        moveSpeed = 10;
+        moveSpeed = walkSpeed;
         isSprinting = false;
         StartCoroutine(StamRecharge());
 
