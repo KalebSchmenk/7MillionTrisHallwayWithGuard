@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fcf00e15e7ecb3b4ba64f69af82c60eb, type: 2}
+    - target: {fileID: -7511558181221131132, guid: ca1a1b5d1c1ed0841a1242868b71ee58, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 99f17f7287b242847b420fb88e1fdd47, type: 2}
     - target: {fileID: 919132149155446097, guid: ca1a1b5d1c1ed0841a1242868b71ee58, type: 3}
       propertyPath: m_Name
       value: Doorway Prefab
