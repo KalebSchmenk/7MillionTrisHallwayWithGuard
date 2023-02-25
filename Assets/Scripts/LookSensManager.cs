@@ -10,7 +10,7 @@ public class LookSensManager : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private TMP_Text _valueText;
 
-    public static float _sliderValue = 0.01f;
+    public static float _sliderValue = 0.25f;
 
 
     private void Awake()
