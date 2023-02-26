@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EndGameTriggerController : MonoBehaviour
 {
     [SerializeField] GameObject winUIParent;
+    [SerializeField] GameObject _ObjectiveParent;
     [SerializeField] float _sendToMenuIn = 2.5f;
     public AudioSource winMusic;
     public AudioClip winSound;
@@ -24,6 +25,7 @@ public class EndGameTriggerController : MonoBehaviour
                 if(winSoundPlayed == false){
                     winMusic.PlayOneShot(winSound);
                     playerScript.backgroundmusicObject.SetActive(false);
+                    Destroy(_ObjectiveParent);
                 }
 
                 winUIParent.SetActive(true);
