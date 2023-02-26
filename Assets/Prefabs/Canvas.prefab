@@ -1883,7 +1883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.000015258789, y: 30.00001}
+  m_AnchoredPosition: {x: -152.7, y: 30.00001}
   m_SizeDelta: {x: 160.00006, y: 60.00003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5235567777758775595
@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Objective: Steal the crown'
+  m_text: 'Objective: Steal the crown and return to the entrance'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5a6d92a8684b274598df55b55d8fba7, type: 2}
   m_sharedMaterial: {fileID: -6340905549461176699, guid: a5a6d92a8684b274598df55b55d8fba7, type: 2}
@@ -1977,7 +1977,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -169.69481, w: 0}
+  m_margin: {x: 0, y: 0, z: -464.4739, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

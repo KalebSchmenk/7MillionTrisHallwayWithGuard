@@ -46,20 +46,19 @@ public class EnemyAIController : MonoBehaviour
     private Vector3 _rotateToRight;
     private Vector3 _rotateToLeft;
 
-    private Renderer _enemyColor;
 
     private GameObject _player;
     private playerController _playerScript;
-    
 
+    private Animator _animation;
     
 
 
     void Start()
     {
         _AIState = AIState.Roam;
-        _enemyColor = GetComponent<Renderer>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _animation = GetComponent<Animator>();
 
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerScript = _player.GetComponent<playerController>();
@@ -75,16 +74,25 @@ public class EnemyAIController : MonoBehaviour
         { 
             // Roam around the nav mesh randomly state
             case AIState.Roam:
-                _enemyColor.material.color = Color.yellow;
                 Wander();
+
+                if (_IAmWaiting == true)
+                {
+                    _animation.Play("Idle");
+                }
+                else
+                {
+                    _animation.Play("Walk");
+                }
 
                 if (_canSeePlayer == true) _AIState = AIState.Chase;
                 break;
             
             // Chase the player state
             case AIState.Chase:
-                _enemyColor.material.color = Color.red;
                 Chase();
+                
+                _animation.Play("Walk");
 
                 if (Vector3.Distance(transform.position, _player.transform.position) <= _navMeshAgent.stoppingDistance + 1.5f)
                 {
@@ -100,8 +108,9 @@ public class EnemyAIController : MonoBehaviour
 
             // Search for the player at their last known positions state
             case AIState.Search:
-                _enemyColor.material.color = Color.magenta;
                 Search();
+
+                _animation.Play("Walk");
 
                 if (_canSeePlayer == true) _AIState = AIState.Chase;
 
@@ -119,8 +128,9 @@ public class EnemyAIController : MonoBehaviour
 
             // Look left and right for the player at their last known position state
             case AIState.LookAround:
-                _enemyColor.material.color = Color.cyan;
                 LookAround();
+
+                _animation.Play("Idle");
 
                 if (_canSeePlayer == true)
                 {
@@ -140,8 +150,9 @@ public class EnemyAIController : MonoBehaviour
 
             // Caught the player state
             case AIState.CaughtPlayer:
-                _enemyColor.material.color = Color.blue;
                 CatchPlayer();
+
+                _animation.Play("Idle");
 
                 break;
         }
@@ -150,6 +161,8 @@ public class EnemyAIController : MonoBehaviour
     // Wanders to a random point
     private void Wander()
     {
+        if (_navMeshAgent.remainingDistance >= _navMeshAgent.stoppingDistance) _IAmWaiting = false;
+
         if (_IAmWaiting == false && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
         {
             _navMeshAgent.speed = _navMeshSpeed;
@@ -243,9 +256,8 @@ public class EnemyAIController : MonoBehaviour
     // Wait co-routine that halts the guard for a moment after it reaches its destination
     private IEnumerator WaitTimer()
     {
+        _IAmWaiting = true;
         yield return new WaitForSeconds(_waitTime);
-
-        if (_IAmWaiting == true) _IAmWaiting = false;
 
         // State Roam is the only caller of this function. This is why setting a destination here is acceptable
         _navMeshAgent.SetDestination(RandomNavMeshLocation());

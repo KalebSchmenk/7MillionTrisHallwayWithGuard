@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnIn: 2.5
-  _enemy: {fileID: 435888240030315398, guid: 2698e7b84f85bb54fba588de358c7998, type: 3}
+  _enemy: {fileID: 6024089127252019194, guid: 2ee7adb9745f3e4418217bd121bd087a, type: 3}
