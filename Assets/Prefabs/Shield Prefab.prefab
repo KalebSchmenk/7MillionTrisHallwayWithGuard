@@ -51,9 +51,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3957782524123411102, guid: 795d14d6c521f28479dbe05d1e8e1694, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 795d14d6c521f28479dbe05d1e8e1694, type: 3}
       propertyPath: m_Name
-      value: finalSHIELD
+      value: Shield Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 795d14d6c521f28479dbe05d1e8e1694, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306512618393000541, guid: 795d14d6c521f28479dbe05d1e8e1694, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994721076960434074, guid: 795d14d6c521f28479dbe05d1e8e1694, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 795d14d6c521f28479dbe05d1e8e1694, type: 3}

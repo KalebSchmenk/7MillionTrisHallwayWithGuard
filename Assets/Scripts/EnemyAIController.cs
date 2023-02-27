@@ -46,6 +46,7 @@ public class EnemyAIController : MonoBehaviour
     private Vector3 _rotateToRight;
     private Vector3 _rotateToLeft;
 
+    private LayerMask _ignoreMask;
 
     private GameObject _player;
     private playerController _playerScript;
@@ -59,6 +60,8 @@ public class EnemyAIController : MonoBehaviour
         _AIState = AIState.Roam;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animation = GetComponent<Animator>();
+
+        _ignoreMask = LayerMask.GetMask("Environment");
 
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerScript = _player.GetComponent<playerController>();
@@ -205,6 +208,7 @@ public class EnemyAIController : MonoBehaviour
     // Guard Searches Players Last Known Position
     private void Search()
     {
+        _IAmWaiting = false;
         _navMeshAgent.SetDestination(_lastKnownLocation);
         _navMeshAgent.speed = _navMeshAgentJogSpeed;
     }
@@ -268,7 +272,7 @@ public class EnemyAIController : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, _player.transform.position - transform.position, out hit, _proximityRange))
+        if (Physics.Raycast(transform.position, _player.transform.position - transform.position, out hit, _proximityRange, _ignoreMask))
         {
             if (hit.transform.gameObject.CompareTag("Player"))
             {

@@ -63,13 +63,73 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8418885108249170206, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -7609795870269595172, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -7523372300800824462, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5673511339021864047, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5539764629200458662, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -4655865372158881058, guid: bd9b83a31505b334687ee835a592b862, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0a9d3829e3a300e46959202aee32fb9e, type: 2}
+    - target: {fileID: -4289066462834495846, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -4008425655136482144, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -3957782524123411102, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -282005817183341635, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bd9b83a31505b334687ee835a592b862, type: 3}
       propertyPath: m_Name
       value: Table Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055702573413825644, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102227904637302750, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330657290757402836, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033415054182305186, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2033415054182305186, guid: bd9b83a31505b334687ee835a592b862, type: 3}
       propertyPath: m_NavMeshLayer
@@ -78,6 +138,18 @@ PrefabInstance:
     - target: {fileID: 2033415054182305186, guid: bd9b83a31505b334687ee835a592b862, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246223748316432836, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246582460200098959, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8523772855540137367, guid: bd9b83a31505b334687ee835a592b862, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd9b83a31505b334687ee835a592b862, type: 3}
