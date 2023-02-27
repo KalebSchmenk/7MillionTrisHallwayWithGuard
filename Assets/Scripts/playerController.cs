@@ -75,11 +75,9 @@ public class playerController : MonoBehaviour{
 
     public GameObject heldCrown;
 
-  
+    private Animator _animator;
+    private Rigidbody _rb;
     
-        
-    
-
     [SerializeField] GameObject _loseUIParent;
 
 
@@ -89,6 +87,9 @@ public class playerController : MonoBehaviour{
         rb.freezeRotation = true;
         Time.timeScale = 1;
 
+        _animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody>();
+
         stamina = maxStamina;
         
     }
@@ -97,6 +98,15 @@ public class playerController : MonoBehaviour{
           
     }
     void Update() {
+
+        if (_rb.velocity.magnitude > 0.01f) 
+        {
+            _animator.Play("Walk");
+        }
+        else
+        {
+            _animator.Play("Idle");
+        }
 
         if(hasCrown == true){
             heldCrown.SetActive(true);

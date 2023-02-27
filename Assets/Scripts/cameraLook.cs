@@ -127,7 +127,7 @@ public class cameraLook : MonoBehaviour
             camY += lookX; 
             camX -= lookY;
 
-            camX = Mathf.Clamp(camX, -90, 90);
+            camX = Mathf.Clamp(camX, -90, 45);
 
             pLooking.transform.rotation = Quaternion.Euler(0, camY, 0);
             transform.rotation = Quaternion.Euler(camX, camY, 0);  
