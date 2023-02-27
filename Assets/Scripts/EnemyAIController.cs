@@ -46,22 +46,17 @@ public class EnemyAIController : MonoBehaviour
     private Vector3 _rotateToRight;
     private Vector3 _rotateToLeft;
 
-    private LayerMask _ignoreMask;
-
     private GameObject _player;
     private playerController _playerScript;
 
     private Animator _animation;
     
 
-
     void Start()
     {
         _AIState = AIState.Roam;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animation = GetComponent<Animator>();
-
-        _ignoreMask = LayerMask.GetMask("Environment");
 
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerScript = _player.GetComponent<playerController>();
@@ -272,7 +267,7 @@ public class EnemyAIController : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, _player.transform.position - transform.position, out hit, _proximityRange, _ignoreMask))
+        if (Physics.Raycast(transform.position, _player.transform.position - transform.position, out hit, _proximityRange))
         {
             if (hit.transform.gameObject.CompareTag("Player"))
             {
